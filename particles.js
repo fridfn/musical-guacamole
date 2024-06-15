@@ -1554,6 +1554,11 @@ function particlesGame(params) {
     "src": "asyla2.png", // Ganti dengan path gambar kedua
     "width": 500,
     "height": 500
+  },
+  {
+    "src": "asyla3.png", // Ganti dengan path gambar kedita
+    "width": 700,
+    "height": 700
   }
  ];
  
@@ -1564,7 +1569,7 @@ function particlesGame(params) {
     particlesJS('particles-game', {
        "particles": {
          "number": {
-           "value": mode === 'image' ? 20 : 100,
+           "value": 10,
            "density": {
              "enable": true,
              "value_area": 800
@@ -1604,12 +1609,12 @@ function particlesGame(params) {
            }
          },
          "size": {
-           "value": mode === 'image' ? size : 13,
+           "value": size,
            "random": true,
            "anim": {
              "enable": false,
              "speed": 5,
-             "size_min": mode === 'image' ? 35 : 6,
+             "size_min": size + 25,
              "sync": false
            }
          },
@@ -1676,7 +1681,7 @@ function particlesGame(params) {
     particlesJS('particles-games', {
        "particles": {
          "number": {
-           "value": mode === 'image' ? 10 : 100,
+           "value": mode === 'image' ? 5 : 100,
            "density": {
              "enable": true,
              "value_area": 800
@@ -1716,12 +1721,124 @@ function particlesGame(params) {
            }
          },
          "size": {
-           "value": mode === 'image' ? size : 13,
+           "value": size,
            "random": true,
            "anim": {
              "enable": false,
              "speed": 5,
-             "size_min": mode === 'image' ? 30 : 6,
+             "size_min": size + 35,
+             "sync": false
+           }
+         },
+         "line_linked": {
+           "enable": true,
+           "distance": 150,
+           "color": "#ffffff00",
+           "opacity": 0,
+           "width": 0
+         },
+         "move": {
+           "enable": true,
+           "speed": speed,
+           "direction": direction,
+           "random": true,
+           "straight": false,
+           "out_mode": "out",
+           "attract": {
+             "enable": false,
+             "rotateX": 1000,
+             "rotateY": 800
+           }
+         }
+       },
+       "interactivity": {
+         "detect_on": "canvas",
+         "events": {
+           "onhover": {
+             "enable": true,
+             "mode": "repulse"
+           },
+           "onclick": {
+             "enable": true,
+             "mode": "push"
+           },
+           "resize": true
+         },
+         "modes": {
+           "grab": {
+             "distance": 400,
+             "line_linked": {
+               "opacity": 1
+             }
+           },
+           "bubble": {
+             "distance": 100,
+             "size": 7,
+             "duration": 1,
+             "opacity": 8,
+             "speed": 3
+           },
+           "repulse": {
+             "distance": 50
+           },
+           "push": {
+             "particles_nb": 1
+           },
+           "remove": {
+             "particles_nb": 2
+           }
+         }
+       },
+      });
+    particlesJS('particles-gamex', {
+       "particles": {
+         "number": {
+           "value": mode === 'image' ? 8 : 100,
+           "density": {
+             "enable": true,
+             "value_area": 800
+           }
+         },
+         "color": {
+           "value": color
+         },
+         "shape": {
+           "type": mode,
+           "stroke": {
+             "width": 0,
+             "color": "#000000"
+           },
+           "hexagon": {
+             "nb_sides": 6
+           },
+           "segitiga": {
+             "nb_sides": 3
+           },
+           "lingkaran": {
+             "nb_sides": 6
+           },
+           "persegi": {
+             "nb_sides": 4
+           },
+           "image": images[2]
+         },
+         "opacity": {
+           "value": 0.5,
+           "random": true,
+           "anim": {
+             "enable": false,
+             "speed": 1,
+             "opacity_min": 0.1,
+             "sync": false
+           }
+         },
+         "size": {
+           "value": size,
+           "random": true,
+           "anim": {
+             "enable": false,
+             "speed": 5,
+             "size_min": size + 35,
              "sync": false
            }
          },
@@ -1789,22 +1906,26 @@ function particlesGame(params) {
    }
   }).call(this);
 }
-
+const elem = document.documentElement;
 let textSays = document.querySelector('.text');
 let randomKata;
- 
- let listRandomKata = [
- 'Happy birthday Asyla :)',
- 'Hope You All The Best',
- 'jangan marah marah terus nanti cepet tua hehe',
- 'aku minta maaf kalo ada hal yang bikin kamu ga suka',
- 'semoga yang disemoga kan menjadi kenyataan',
- 'semangat terus ya jalanin hari hari nya kan selalu ada aku disisi kamu, wkwk',
- 'semoga cita cita kamu tergapai dan jangan gampang menyerah untuk meraihnya ya',
- 'I Love You So Much Much Much Asyla♥️',
- 'Aku alan selalu ada di saat senang sedih nya kamu',
- 'aku gaakan cape buat nyemangatin kamu tiap harinya'
- ];
+
+let listRandomKata = [
+'Happy birthday Asyla :)',
+'Hope You All The Best',
+'jangan marah marah terus nanti cepet tua hehe',
+'aku minta maaf kalo ada hal yang bikin kamu ga suka',
+'semoga yang disemoga kan menjadi kenyataan',
+'semangat terus ya jalanin hari hari nya kan selalu ada aku disisi kamu, wkwk',
+'semoga cita cita kamu tergapai dan jangan gampang menyerah untuk meraihnya ya',
+'I Love You So Much Much Much Asyla♥️',
+'Aku alan selalu ada di saat senang sedih nya kamu',
+'aku gaakan cape buat nyemangatin kamu tiap harinya',
+'walau mood kamu berubah ubah aku paham bahwa itu bukan hal kebencian tapi itu untuk membuktikan sebagaimana kita mampu bertahan',
+'banyaknya cobaan apapun nanti yang akan datang harus di lewati bersama sampai menemukan kebahagiaan yang benar benar nyata',
+'hubungan yang indah itu di bentuk bukan di cari. jika sudah menemukan sesuatu yang indah maka jangan mencari ke indahan di orang lain, nanti yang ada kamu akan kehilangan semuanya'
+];
+
 function generateRandomKata() {
  var angkaRandomKata = Math.random();
  var indexRandomKata = Math.floor(angkaRandomKata * listRandomKata.length);
@@ -1813,7 +1934,7 @@ function generateRandomKata() {
  return randomKata;
 }
 
-randomKata = 'HAPPY BIRTHDAY ASYLA 🥳🎉♥️';
+randomKata = 'HAPPY BIRTHDAY YUNITA 🥳🎉♥️';
 
 function textPopup(index) {
  let delay = 100;
@@ -1826,22 +1947,24 @@ function textPopup(index) {
   textSays.innerHTML = randomKata;
   randomKata = generateRandomKata();
   const intervalId = 
-  setTimeout(tampilkanQuoteBerikutnya, 5000);
+  setTimeout(tampilkanQuoteBerikutnya, 3000);
  }
 }
 
+let next = 0;
 function tampilkanQuoteBerikutnya() {
-  let index = 0;
   textSays.innerHTML = '';
-  index = (index + 1) % listRandomKata.length;
+  next = (next + 1) % listRandomKata.length;
   textPopup(0);
  }
 
 textPopup(0);
 
+function setFullScreen() {
+ if (!document.fullscreenElement) { if (elem.requestFullscreen) { elem.requestFullscreen() }}
+}
+
 function passingValue() {
- textSays.innerHTML = '';
- textPopup(0);
  const input = document.querySelector('.input').value;
  const wordTrim = input.replace(/\s+/g, '');
  const params = wordTrim.split(',');
@@ -1863,3 +1986,17 @@ function passingValue() {
 }
 
 particlesGame({ mode: 'love', direction: 'bottom-left', speed: 1, size: 70 });
+
+function fullScreen() {
+  if (!document.fullscreenElement) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen().catch((err) => {
+        console.error('Tidak dapat memasuki mode layar penuh:', err);
+      });
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}
