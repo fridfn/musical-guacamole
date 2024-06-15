@@ -1909,6 +1909,7 @@ function particlesGame(params) {
 const elem = document.documentElement;
 let textSays = document.querySelector('.text');
 let randomKata;
+const audio = document.getElementById('audio-player');
 
 let listRandomKata = [
 'Happy birthday Asyla :)',
@@ -1939,7 +1940,7 @@ function generateRandomKata() {
 randomKata = 'HAPPY BIRTHDAY YUNITA 🥳🎉♥️';
 let next = 0;
 function textPopup(index) {
- let delay = 100;
+ let delay = 110;
  const kataLength = listRandomKata[next].length;
  
  if (index < kataLength) {
@@ -1948,7 +1949,7 @@ function textPopup(index) {
  } else {
   next = (next + 1) % listRandomKata.length;
   const nextKata = listRandomKata[next];
-  setTimeout(tampilkanQuoteBerikutnya, 3000);
+  setTimeout(tampilkanQuoteBerikutnya, 6500);
  }
 }
 
@@ -1956,12 +1957,6 @@ function tampilkanQuoteBerikutnya() {
   textSays.innerHTML = '';
   textPopup(0);
  }
-
-textPopup(0);
-
-function setFullScreen() {
- if (!document.fullscreenElement) { if (elem.requestFullscreen) { elem.requestFullscreen() }}
-}
 
 function passingValue() {
  const input = document.querySelector('.input').value;
@@ -1998,4 +1993,13 @@ function fullScreen() {
       document.exitFullscreen();
     }
   }
+}
+
+function showMessageAndPlayAudio() {
+ const containerMasuk = document.querySelector('.container-masuk');
+ if (!document.fullscreenElement) { if (elem.requestFullscreen) { elem.requestFullscreen() }}
+ containerMasuk.classList.toggle('active');
+  var audio = new Audio('Akhir_Tak_Bahagia.mp3');
+  textPopup(0);
+  audio.play();
 }
