@@ -1793,7 +1793,6 @@ function particlesGame(params) {
 let textSays = document.querySelector('.text');
 let randomKata;
  
-function generateRandomKata() {
  let listRandomKata = [
  'Happy birthday Asyla :)',
  'Hope You All The Best',
@@ -1806,7 +1805,7 @@ function generateRandomKata() {
  'Aku alan selalu ada di saat senang sedih nya kamu',
  'aku gaakan cape buat nyemangatin kamu tiap harinya'
  ];
- 
+function generateRandomKata() {
  var angkaRandomKata = Math.random();
  var indexRandomKata = Math.floor(angkaRandomKata * listRandomKata.length);
  
@@ -1826,8 +1825,17 @@ function textPopup(index) {
  } else {
   textSays.innerHTML = randomKata;
   randomKata = generateRandomKata();
+  const intervalId = 
+  setTimeout(tampilkanQuoteBerikutnya, 5000);
  }
 }
+
+function tampilkanQuoteBerikutnya() {
+  let index = 0;
+  textSays.innerHTML = '';
+  index = (index + 1) % listRandomKata.length;
+  textPopup(0);
+ }
 
 textPopup(0);
 
