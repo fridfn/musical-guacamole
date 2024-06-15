@@ -1919,11 +1919,13 @@ let listRandomKata = [
 'semangat terus ya jalanin hari hari nya kan selalu ada aku disisi kamu, wkwk',
 'semoga cita cita kamu tergapai dan jangan gampang menyerah untuk meraihnya ya',
 'I Love You So Much Much Much Asyla♥️',
-'Aku alan selalu ada di saat senang sedih nya kamu',
+'Aku akan selalu ada di saat senang sedih nya kamu',
 'aku gaakan cape buat nyemangatin kamu tiap harinya',
+'aku akan selalu ada untuk kamu saat kamu membutuhkan teman untuk bercerita',
 'walau mood kamu berubah ubah aku paham bahwa itu bukan hal kebencian tapi itu untuk membuktikan sebagaimana kita mampu bertahan',
 'banyaknya cobaan apapun nanti yang akan datang harus di lewati bersama sampai menemukan kebahagiaan yang benar benar nyata',
-'hubungan yang indah itu di bentuk bukan di cari. jika sudah menemukan sesuatu yang indah maka jangan mencari ke indahan di orang lain, nanti yang ada kamu akan kehilangan semuanya'
+'hubungan yang indah itu di bentuk bukan di cari. jika sudah menemukan sesuatu yang indah maka jangan mencari ke indahan di orang lain, nanti yang ada kamu akan kehilangan semuanya',
+'semoga kamu suka, terus semangat ya jalanin hari hari nya walau kadang itu berat. I Love You ♥️♥️♥️'
 ];
 
 function generateRandomKata() {
@@ -1935,26 +1937,23 @@ function generateRandomKata() {
 }
 
 randomKata = 'HAPPY BIRTHDAY YUNITA 🥳🎉♥️';
-
+let next = 0;
 function textPopup(index) {
  let delay = 100;
- const kataLength = randomKata.length;
+ const kataLength = listRandomKata[next].length;
  
  if (index < kataLength) {
-  textSays.innerHTML += randomKata.charAt(index);
+  textSays.innerHTML += listRandomKata[next].charAt(index);
   setTimeout(textPopup, delay, index + 1);
  } else {
-  textSays.innerHTML = randomKata;
-  randomKata = generateRandomKata();
-  const intervalId = 
+  next = (next + 1) % listRandomKata.length;
+  const nextKata = listRandomKata[next];
   setTimeout(tampilkanQuoteBerikutnya, 3000);
  }
 }
 
-let next = 0;
 function tampilkanQuoteBerikutnya() {
   textSays.innerHTML = '';
-  next = (next + 1) % listRandomKata.length;
   textPopup(0);
  }
 
