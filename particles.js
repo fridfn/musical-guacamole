@@ -1676,7 +1676,7 @@ function particlesGame(params) {
     particlesJS('particles-games', {
        "particles": {
          "number": {
-           "value": mode === 'image' ? 20 : 100,
+           "value": mode === 'image' ? 10 : 100,
            "density": {
              "enable": true,
              "value_area": 800
@@ -1790,16 +1790,68 @@ function particlesGame(params) {
   }).call(this);
 }
 
+let textSays = document.querySelector('.text');
+let randomKata;
+ 
+function generateRandomKata() {
+ let listRandomKata = [
+ 'Happy birthday Asyla :)',
+ 'Hope You All The Best',
+ 'jangan marah marah terus nanti cepet tua hehe',
+ 'aku minta maaf kalo ada hal yang bikin kamu ga suka',
+ 'semoga yang disemoga kan menjadi kenyataan',
+ 'semangat terus ya jalanin hari hari nya kan selalu ada aku disisi kamu, wkwk',
+ 'semoga cita cita kamu tergapai dan jangan gampang menyerah untuk meraihnya ya',
+ 'I Love You So Much Much Much Asyla♥️',
+ 'Aku alan selalu ada di saat senang sedih nya kamu',
+ 'aku gaakan cape buat nyemangatin kamu tiap harinya'
+ ];
+ 
+ var angkaRandomKata = Math.random();
+ var indexRandomKata = Math.floor(angkaRandomKata * listRandomKata.length);
+ 
+ randomKata = listRandomKata[indexRandomKata];
+ return randomKata;
+}
+
+randomKata = 'HAPPY BIRTHDAY ASYLA 🥳🎉♥️';
+
+function textPopup(index) {
+ let delay = 100;
+ const kataLength = randomKata.length;
+ 
+ if (index < kataLength) {
+  textSays.innerHTML += randomKata.charAt(index);
+  setTimeout(textPopup, delay, index + 1);
+ } else {
+  textSays.innerHTML = randomKata;
+  randomKata = generateRandomKata();
+ }
+}
+
+textPopup(0);
 
 function passingValue() {
+ textSays.innerHTML = '';
+ textPopup(0);
+ const input = document.querySelector('.input').value;
+ const wordTrim = input.replace(/\s+/g, '');
+ const params = wordTrim.split(',');
+ const command = params.length;
  
- console.log(checkDirectionMode, checkSpeedValue, checkCustomSize)
+ const speedValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+ const customDirection = ['top', 'right', 'left', 'bottom', 'top-right', 'top-left', 'bottom-right', 'bottom-left'];
+ 
+ const checkSpeedValue = speedValue.some((kata) => input.includes(kata));
+ const checkDirectionMode = customDirection.some((kata) => input.includes(kata));
+ 
+ const setExecutedCustom = [command === 3, checkDirectionMode, checkSpeedValue].every((value) => value === true);
  
  if (setExecutedCustom) {
-  particlesGame({ mode: 'love', direction: direction, speed: speed, size: size });
+  particlesGame({ mode: 'love', direction: params[0], speed: params[1], size: params[2] });
  } else {
   alert("TOLONG KETIKAN NILAI SAMA PERSIS SEPERTI INFORMASI DIATAS.");
  }
 }
 
-particlesGame({ mode: 'love', direction: 'bottom-left', speed: 3, size: 50 });
+particlesGame({ mode: 'love', direction: 'bottom-left', speed: 1, size: 70 });
