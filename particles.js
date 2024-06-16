@@ -1726,7 +1726,7 @@ function particlesGame(params) {
            "anim": {
              "enable": false,
              "speed": 5,
-             "size_min": size + 35,
+             "size_min": size + 70,
              "sync": false
            }
          },
@@ -1838,7 +1838,7 @@ function particlesGame(params) {
            "anim": {
              "enable": false,
              "speed": 5,
-             "size_min": size + 35,
+             "size_min": size + 70,
              "sync": false
            }
          },
@@ -1908,36 +1908,28 @@ function particlesGame(params) {
 }
 const elem = document.documentElement;
 let textSays = document.querySelector('.text');
-let randomKata;
 const audio = document.getElementById('audio-player');
 
 let listRandomKata = [
-'Happy birthday Asyla :)',
+'Happy birthday Yunita :)',
 'Hope You All The Best',
 'jangan marah marah terus nanti cepet tua hehe',
 'aku minta maaf kalo ada hal yang bikin kamu ga suka',
 'semoga yang disemoga kan menjadi kenyataan',
 'semangat terus ya jalanin hari hari nya kan selalu ada aku disisi kamu, wkwk',
 'semoga cita cita kamu tergapai dan jangan gampang menyerah untuk meraihnya ya',
-'I Love You So Much Much Much Asyla♥️',
+'I Love You So Much Much Much Yunita♥️',
 'Aku akan selalu ada di saat senang sedih nya kamu',
 'aku gaakan cape buat nyemangatin kamu tiap harinya',
 'aku akan selalu ada untuk kamu saat kamu membutuhkan teman untuk bercerita',
 'walau mood kamu berubah ubah aku paham bahwa itu bukan hal kebencian tapi itu untuk membuktikan sebagaimana kita mampu bertahan',
 'banyaknya cobaan apapun nanti yang akan datang harus di lewati bersama sampai menemukan kebahagiaan yang benar benar nyata',
 'hubungan yang indah itu di bentuk bukan di cari. jika sudah menemukan sesuatu yang indah maka jangan mencari ke indahan di orang lain, nanti yang ada kamu akan kehilangan semuanya',
-'semoga kamu suka, terus semangat ya jalanin hari hari nya walau kadang itu berat. I Love You ♥️♥️♥️'
+'semoga kamu suka, terus semangat ya jalanin hari hari nya walau kadang itu beratt. I Love You ♥️♥️♥️',
+'I Love You'
 ];
 
-function generateRandomKata() {
- var angkaRandomKata = Math.random();
- var indexRandomKata = Math.floor(angkaRandomKata * listRandomKata.length);
- 
- randomKata = listRandomKata[indexRandomKata];
- return randomKata;
-}
 
-randomKata = 'HAPPY BIRTHDAY YUNITA 🥳🎉♥️';
 let next = 0;
 function textPopup(index) {
  let delay = 110;
@@ -1949,7 +1941,16 @@ function textPopup(index) {
  } else {
   next = (next + 1) % listRandomKata.length;
   const nextKata = listRandomKata[next];
-  setTimeout(tampilkanQuoteBerikutnya, 6500);
+  const setTime = setTimeout(tampilkanQuoteBerikutnya, 4000);
+  
+  if (next === listRandomKata.length - 1) {
+   clearTimeout(setTime);
+   var audio = new Audio('Akhir_Tak_Bahagia.mp3');
+   audio.pause();
+   setTimeout(() => {
+    location.reload();
+   }, 10000);
+  }
  }
 }
 
@@ -1979,7 +1980,7 @@ function passingValue() {
  }
 }
 
-particlesGame({ mode: 'love', direction: 'bottom-left', speed: 1, size: 70 });
+particlesGame({ mode: 'love', direction: 'top', speed: 1, size: 70 });
 
 function fullScreen() {
   if (!document.fullscreenElement) {
@@ -2000,6 +2001,6 @@ function showMessageAndPlayAudio() {
  if (!document.fullscreenElement) { if (elem.requestFullscreen) { elem.requestFullscreen() }}
  containerMasuk.classList.toggle('active');
   var audio = new Audio('Akhir_Tak_Bahagia.mp3');
-  textPopup(0);
   audio.play();
+  textPopup(0);
 }
